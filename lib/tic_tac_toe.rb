@@ -16,3 +16,58 @@ def display_board(board)
   puts "-----------"
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
+
+#input_to_index
+
+#move
+
+#position_taken?
+
+#valid_move?
+
+#turn
+
+#turn_count
+
+#current_player
+
+def won?(board)
+  win = false
+  WIN_COMBINATIONS.each do | win_combo |
+    if (board[win_combo[0]] == "X" && board[win_combo[1]] == "X" && board[win_combo[2]] == "X") ||
+      (board[win_combo[0]] == "O" && board[win_combo[1]] == "O" && board[win_combo[2]] == "O")
+      win = win_combo
+    end
+  end
+  return win
+end
+
+def full?(board)
+  board.none? do | space |
+    space == " " || space == "" || space == nil
+  end
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def over?(board)
+  if won?(board) || full?(board) || draw?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def winner(board)
+  if won?(board)
+    return board[won?(board)[0]]
+  else
+    return nil
+  end
+end
