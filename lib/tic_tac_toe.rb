@@ -45,9 +45,23 @@ def turn(board)
   end
 end
 
-#turn_count
+def turn_count(board)
+  turns = 0
+  board.each do | space |
+    if space == "X" || space == "O"
+      turns += 1
+    end
+  end
+  return turns
+end
 
-#current_player
+def current_player(board)
+  if turn_count(board) % 2 == 0
+    return "X"
+  else
+    return "O"
+  end
+end
 
 def won?(board)
   win = false
